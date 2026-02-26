@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ej1 Cajas</title>
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <h1>Ejercicio 1: Cajas</h1>
+  <a href="index.html">Inicio</a>
+
+  <br><br>
+  <button onclick="pedir()">Crear cajas</button>
+
+  <div id="msg" class="out">---</div>
+  <div id="contenedor" class="out"></div>
+
+  <script>
+    function pedir(){
+      let n = Number(prompt("¿Cuántas cajas (articles) quieres?"));
+      if (!n || n < 1) {
+        document.getElementById("msg").textContent = "Número inválido.";
+        document.getElementById("contenedor").innerHTML = "";
+        return;
+      }
+      crear(n);
+    }
+
+    function crear(n){
+      let cont = document.getElementById("contenedor");
+      let msg = document.getElementById("msg");
+      cont.innerHTML = "";
+
+      // estilos según condición
+      let colorTexto, colorFondo, modo;
+
+      if (n < 8) {
+        colorTexto = "#f3c623";
+        colorFondo = "#10375c";
+        modo = "vertical";
+        msg.textContent = "Menor a 8 → vertical";
+      } else {
+        // aquí entra 8 y mayores (para hacerlo simple)
+        colorTexto = "#10375c";
+        colorFondo = "#f3c623";
+        modo = "horizontal";
+        msg.textContent = "Mayor a 8 (o 8) → horizontal";
+      }
+
+      for (let i = 1; i <= n; i++) {
+        let art = document.createElement("article");
+        art.textContent = "Caja " + i;
+        art.style.color = colorTexto;
+        art.style.background = colorFondo;
+        art.style.padding = "10px";
+        art.style.margin = "6px";
+        art.style.border = "1px solid #00000022";
+        art.style.borderRadius = "6px";
+
+        // vertical = block / horizontal = inline-block
+        art.style.display = (modo === "vertical") ? "block" : "inline-block";
+
+        cont.appendChild(art);
+      }
+    }
+  </script>
+</body>
+</html>

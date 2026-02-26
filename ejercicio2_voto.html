@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ej2 Voto</title>
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <h1>Ejercicio 2: Voto</h1>
+  <a href="index.html">Inicio</a>
+
+  <div class="out">
+    <p>Sección:</p>
+    <select id="seccion">
+      <option value="norte">norte</option>
+      <option value="sur">sur</option>
+      <option value="centro">centro</option>
+    </select>
+
+    <p>Voto:</p>
+    <select id="voto">
+      <option value="A">A</option>
+      <option value="B">B</option>
+      <option value="C">C</option>
+    </select>
+
+    <br><br>
+    <button onclick="enviar()">Enviar</button>
+  </div>
+
+  <div id="salida" class="out">---</div>
+
+  <script>
+    function textoSeccion(s){
+      switch(s){
+        case "norte": return "Eres de NORTE";
+        case "sur": return "Eres de SUR";
+        case "centro": return "Eres de CENTRO";
+        default: return "Sección inválida";
+      }
+    }
+
+    function enviar(){
+      let s = document.getElementById("seccion").value;
+      let v = document.getElementById("voto").value;
+      document.getElementById("salida").textContent = textoSeccion(s) + " | Voto: " + v;
+    }
+  </script>
+</body>
+</html>

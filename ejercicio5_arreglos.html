@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ej5 Arreglos</title>
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <h1>Ejercicio 5: Arreglos</h1>
+  <a href="index.html">Inicio</a>
+
+  <div id="arr" class="out"></div>
+
+  <h3>Botones</h3>
+  <button onclick="popFn()">pop</button>
+  <button onclick="shiftFn()">shift</button>
+  <button onclick="pushFn()">push</button>
+  <button onclick="unshiftFn()">unshift</button>
+  <button onclick="spliceFn()">splice</button>
+  <button onclick="deleteFn()">delete</button>
+  <button onclick="reverseFn()">reverse</button>
+  <button onclick="sortFn()">sort</button>
+  <button onclick="concatFn()">concat</button>
+  <button onclick="joinFn()">join</button>
+  <button onclick="lengthFn()">length</button>
+
+  <h3>¿Qué hace la función?</h3>
+  <div id="exp" class="out">---</div>
+
+  <h3>ANTES</h3>
+  <div id="antes" class="out">---</div>
+
+  <h3>DESPUÉS</h3>
+  <div id="despues" class="out">---</div>
+
+  <h3>Resultado extra</h3>
+  <div id="extra" class="out">---</div>
+
+  <script>
+    let paises = ["México","España","Japón","Canadá","Brasil","Argentina","Francia","Italia","Alemania","Chile"];
+
+    function pintar(){
+      document.getElementById("arr").textContent = "Paises: " + JSON.stringify(paises);
+    }
+    pintar();
+
+    function setInfo(nombre, queHace, antesTxt, despuesTxt, extraTxt){
+      document.getElementById("exp").textContent =
+        nombre + ": " + queHace;
+
+      document.getElementById("antes").textContent = antesTxt;
+      document.getElementById("despues").textContent = despuesTxt;
+      document.getElementById("extra").textContent = extraTxt;
+    }
+
+    function popFn(){
+      let antes = JSON.stringify(paises);
+      let quitado = paises.pop();
+      let despues = JSON.stringify(paises);
+
+      setInfo(
+        "pop()",
+        "Quita el ÚLTIMO elemento del arreglo.",
+        antes,
+        despues,
+        "Quitó: " + quitado
+      );
+      pintar();
+    }
+
+    function shiftFn(){
+      let antes = JSON.stringify(paises);
+      let quitado = paises.shift();
+      let despues = JSON.stringify(paises);
+
+      setInfo(
+        "shift()",
+        "Quita el PRIMER elemento del arreglo.",
+        antes,
+        despues,
+        "Quitó: " + quitado
+      );
+      pintar();
+    }
+
+    function pushFn(){
+      let x = prompt("push: país para agregar al FINAL");
+      if (!x) return;
+
+      let antes = JSON.stringify(paises);
+      paises.push(x);
+      let despues = JSON.stringify(paises);
+
+      setInfo(
+        "push()",
+        "Agrega un elemento al FINAL del arreglo.",
+        antes,
+        despues,
+        "Agregó: " + x
+      );
+      pintar();
+    }
+
+    function unshiftFn(){
+      let x = prompt("unshift: país para agregar al INICIO");
+      if (!x) return;
+
+      let antes = JSON.stringify(paises);
+      paises.unshift(x);
+      let despues = JSON.stringify(paises);
+
+      setInfo(
+        "unshift()",
+        "Agrega un elemento al INICIO del arreglo.",
+        antes,
+        despues,
+        "Agregó: " + x
+      );
+      pintar();
+    }
+
+    function spliceFn(){
+      let i = Number(prompt("splice: índice inicio (ej 2)"));
+      let c = Number(prompt("splice: cuántos borrar (ej 1)"));
+      if (isNaN(i) || isNaN(c)) return;
+
+      let antes = JSON.stringify(paises);
+      let borrados = paises.splice(i, c);
+      let despues = JSON.stringify(paises);
+
+      setInfo(
+        "splice(i, c)",
+        "Borra elementos desde un ÍNDICE (i) una CANTIDAD (c).",
+        antes,
+        despues,
+        "Borró: " + JSON.stringify(borrados)
+      );
+      pintar();
+    }
+
+    function deleteFn(){
+      let i = Number(prompt("delete: índice a borrar (ej 0)"));
+      if (isNaN(i)) return;
+
+      let antes = JSON.stringify(paises);
+      delete paises[i]; // deja hueco
+      let despues = JSON.stringify(paises);
+
+      setInfo(
+        "delete arreglo[i]",
+        "Borra el valor, PERO deja un HUECO (no reacomoda).",
+        antes,
+        despues,
+        "Borró el índice: " + i
+      );
+      pintar();
+    }
+
+    function reverseFn(){
+      let antes = JSON.stringify(paises);
+      paises.reverse();
+      let despues = JSON.stringify(paises);
+
+      setInfo(
+        "reverse()",
+        "Invierte el arreglo (al revés).",
+        antes,
+        despues,
+        "Listo."
+      );
+      pintar();
+    }
+
+    function sortFn(){
+      let antes = JSON.stringify(paises);
+      paises.sort();
+      let despues = JSON.stringify(paises);
+
+      setInfo(
+        "sort()",
+        "Ordena alfabéticamente (A-Z).",
+        antes,
+        despues,
+        "Listo."
+      );
+      pintar();
+    }
+
+    function concatFn(){
+      let antes = JSON.stringify(paises);
+      let nuevo = paises.concat(["Perú","Colombia"]);
+      let despues = JSON.stringify(paises);
+
+      setInfo(
+        "concat()",
+        "Une arreglos y crea UNO NUEVO (NO cambia el original).",
+        antes,
+        despues,
+        "Nuevo arreglo: " + JSON.stringify(nuevo)
+      );
+      pintar();
+    }
+
+    function joinFn(){
+      let sep = prompt("join: separador (ej , o -)");
+      if (sep === null) return;
+
+      let antes = JSON.stringify(paises);
+      let texto = paises.join(sep);
+      let despues = JSON.stringify(paises);
+
+      setInfo(
+        "join()",
+        "Convierte el arreglo en TEXTO usando un separador.",
+        antes,
+        despues,
+        "Texto: " + texto
+      );
+      pintar();
+    }
+
+    function lengthFn(){
+      let antes = JSON.stringify(paises);
+      let n = paises.length;
+      let despues = JSON.stringify(paises);
+
+      setInfo(
+        "length",
+        "Muestra cuántos elementos tiene el arreglo.",
+        antes,
+        despues,
+        "Cantidad: " + n
+      );
+      pintar();
+    }
+  </script>
+</body>
+</html>

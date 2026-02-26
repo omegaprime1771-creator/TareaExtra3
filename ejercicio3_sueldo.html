@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ej3 Sueldo</title>
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <h1>Ejercicio 3: Sueldo</h1>
+  <a href="index.html">Inicio</a>
+
+  <div class="out">
+    Sueldo base: 40000 euros
+    <br><br>
+    Años en la empresa:
+    <br>
+    <input id="anios" type="number" value="2" min="0">
+    <br>
+    <button onclick="calcular()">Calcular</button>
+  </div>
+
+  <div id="salida" class="out">---</div>
+
+  <script>
+    function calcular(){
+      let base = 40000;
+      let a = Number(document.getElementById("anios").value);
+      if (a < 0 || isNaN(a)) {
+        document.getElementById("salida").textContent = "Dato inválido.";
+        return;
+      }
+
+      let p = 3;
+      if (a > 10) p = 10;
+      else if (a > 5) p = 7;
+      else if (a > 3) p = 5;
+
+      let total = base + (base * p / 100);
+      document.getElementById("salida").textContent =
+        "Aumento: " + p + "%\nSueldo final: " + total.toFixed(2) + " euros";
+    }
+  </script>
+</body>
+</html>

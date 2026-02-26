@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ej4 Ciclos</title>
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <h1>Ejercicio 4: While y For</h1>
+  <a href="index.html">Inicio</a>
+
+  <br><br>
+  <button onclick="impares()">1) Suma impares 1-100</button>
+  <button onclick="asteriscos()">2) Asteriscos</button>
+  <button onclick="tablas()">3) Tablas 1-10</button>
+
+  <div id="salida" class="out">---</div>
+
+  <script>
+    function impares(){
+      let suma = 0;
+      for (let i = 1; i <= 100; i++) {
+        if (i % 2 !== 0) suma += i;
+      }
+      document.getElementById("salida").textContent = "Suma impares 1-100 = " + suma;
+    }
+
+    function asteriscos(){
+      let n = Number(prompt("Dame un número:"));
+      if (isNaN(n) || n < 0) {
+        document.getElementById("salida").textContent = "Número inválido.";
+        return;
+      }
+      let i = 0;
+      let txt = "";
+      while (i < n) {
+        txt += "*";
+        i++;
+      }
+      document.getElementById("salida").textContent = txt;
+    }
+
+    function tablas(){
+      let txt = "";
+      for (let t = 1; t <= 10; t++) {
+        for (let m = 1; m <= 10; m++) {
+          txt += t + "x" + m + "=" + (t*m) + "\n";
+        }
+        txt += "\n";
+      }
+      document.getElementById("salida").textContent = txt;
+    }
+  </script>
+</body>
+</html>
